@@ -1,0 +1,39 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication7.WebForm1" %>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <user:MyControl ID="WebUserControl11" runat="server" />
+ <div>
+ <br />
+ <br />
+ <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/nature.jpeg" />
+ <br />
+ <h4>NAME: Huzaifa Shamim </h4>
+ </div>
+ </form>
+</body>
+</html>
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Pract_4_a
+{
+    public partial class _4C : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}
