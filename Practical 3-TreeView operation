@@ -1,0 +1,42 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication6.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:SiteMapDataSource ID="SiteMapSource1" runat="server" />
+            <asp:TreeView ID="Treeview1" runat="server" DataSourceID="SiteMapDataSource1" OnSelectedNodeChanged="Treeview1_SelectedNodeChanged"></asp:TreeView>        </div>
+    </form>
+</body>
+</html>
+
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="WebApplication6.WebForm2" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="EmployeePage"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="w=WebForm1" title="Home"  description="">
+    <siteMapNode url="WebForm2" title="about"  description="" />
+    <siteMapNode url="" title="Contact"  description="" />
+  </siteMapNode>
+</siteMap>
