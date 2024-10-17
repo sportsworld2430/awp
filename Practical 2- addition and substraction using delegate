@@ -1,0 +1,26 @@
+using System;
+public delegate void MathOptr(int n1, int n2);
+class DelegateMethod
+{
+    public void add(int n1, int n2)
+    {
+        Console.WriteLine("Additon= " + (n1 + n2));
+    }
+    public void sub(int n1, int n2)
+    {
+        Console.WriteLine("subtraction= " + (n1 + n2));
+    }
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            DelegateMethod dm = new DelegateMethod();
+            MathOptr d1 = new MathOptr(dm.add);
+            MathOptr d2 = new MathOptr(dm.add);
+            d1(10, 20);
+            d2(20, 10);
+            Console.ReadKey();
+        }
+    }
+}
+
