@@ -1,0 +1,48 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication6.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server" ></asp:TextBox>
+           <br/>
+            <asp:Calendar ID="calendar1" runat="server" OnDayRender="calenndar1_DayRender"></asp:Calendar>
+        </div>
+    </form>
+</body>
+</html>
+
+
+using System;
+using System.Web.UI.WebControls;
+
+namespace WebApplication6
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        { 
+        }
+            protected void Calenndar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if((e.Day.Date>=new DateTime(2024,8,14))&&(e.Day.Date<=new DateTime(2024, 8, 16)))
+            {
+                e.cell.BackColor=System.Drawing.Color.Red;
+                e.cell.ForeColor=System.Drawing.Color.Green;
+                e.cell.Controls.Add(new LiteralControl("Holiday"));
+            }
+
+        }
+
+        protected void calender1_DayRender(object sender, DayRenderEventArgs e)
+        {
+
+        }
+    }
+    }
