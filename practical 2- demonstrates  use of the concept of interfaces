@@ -1,0 +1,32 @@
+using System;
+interface MyInterface
+{
+    void display();
+}
+class callInterface : MyInterface
+{
+    public void display()
+    {
+        Console.WriteLine("Interface is called");
+    }
+}
+class CallInterface1 : MyInterface
+{
+    public void display()
+    {
+        Console.WriteLine("Interface Method");
+    }
+}
+class program
+{
+    public static void Main(string[] args)
+    {
+        callInterface obj = new callInterface();
+        callInterface obj1 = new callInterface(); 
+        obj.display();
+        obj1.display();
+        Console.ReadKey();
+    }
+}
+    
+
