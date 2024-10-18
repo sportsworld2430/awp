@@ -1,0 +1,103 @@
+<!DOCTYPEhtml>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+<br />
+<br />
+<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+<br />
+<br />
+<asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+<br />
+<br />
+<asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+<br />
+<br />
+<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Insert" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Delete" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="View" />
+<br />
+<br />
+<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
+DataSourceID="SqlDataSource1">
+<Columns>
+<asp:BoundField DataField="srno" HeaderText="srno" SortExpression="srno" />
+<asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
+<asp:BoundField DataField="city" HeaderText="city" SortExpression="city" />
+<asp:BoundField DataField="class" HeaderText="class" SortExpression="class" />
+</Columns>
+</asp:GridView>
+<br />
+<br />
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$
+ConnectionStrings:db1ConnectionString %>" SelectCommand="SELECT * FROM [student]"></asp:SqlDataSource>
+</div>
+</form>
+</body>
+</html>
+
+
+
+WebForm1.aspx.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+namespace Practical_7_c_
+{
+public partial class WebForm1 : System.Web.UI.Page
+{
+SqlConnection cn = new SqlConnection("Data Source=LAPTOP-CNISGKB3;Initial Catalog=db1;Integrated
+Security=True");
+SqlDataReader ds;
+SqlCommand co = new SqlCommand();
+SqlParameter @p1, @p2, @p3, @p4;
+protected void Button2_Click(objectsender, EventArgs e)
+{
+co.CommandText = "delete from student where srno='" + TextBox1.Text + "';";
+co.ExecuteNonQuery();
+}
+protected void Button3_Click(objectsender, EventArgs e)
+{
+co.CommandText = "select * from student;";
+ds = co.ExecuteReader();
+GridView1.DataBind();
+}
+protected void Button1_Click(objectsender, EventArgs e)
+{
+@p1 = new SqlParameter();
+@p1.ParameterName = "srno";
+@p1.SqlDbType = System.Data.SqlDbType.Int;
+@p2 = new SqlParameter();
+@p2.ParameterName = "name";
+@p2.SqlDbType = System.Data.SqlDbType.VarChar;
+@p3 = new SqlParameter();
+@p3.ParameterName = "class";
+@p3.SqlDbType = System.Data.SqlDbType.VarChar;
+@p4 = new SqlParameter();
+@p4.ParameterName = "city";
+@p4.SqlDbType = System.Data.SqlDbType.VarChar;
+co.Parameters.AddWithValue("@p1", TextBox1.Text);
+co.Parameters.AddWithValue("@p2", TextBox2.Text);
+co.Parameters.AddWithValue("@p3", TextBox3.Text);
+co.Parameters.AddWithValue("@p4", TextBox4.Text);
+co.CommandText = "insert into student (srno,name,class,city) values(@p1, @p2, @p3, @p4); ";
+co.ExecuteNonQuery();
+}
+protected void Page_Load(objectsender, EventArgs e)
+{
+cn.Open();
+co.Connection = cn;
+}
+}
+}
